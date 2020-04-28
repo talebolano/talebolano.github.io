@@ -304,7 +304,8 @@
 <center>快速风格迁移网络</center>  
 
 <p>&emsp;&emsp;原图片经过生成网络得到生成的风格图片后分别与目标图片和原图片计算两种损失。其中constant损失使生成图片与原图片整体相似，而风格损失则使生成的图片的风格向目标图片偏移。两种损失均为来<br>损失。图片的风格由Gram矩阵得到，Gram矩阵的计算公式为</p>
-<p>$$Gram=A^TA$$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Gram&#x3D;A^TA</span><br></pre></td></tr></table></figure>
+
 <p>&emsp;&emsp;具体代码为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">b,c,h,w &#x3D; input.size()</span><br><span class="line">F &#x3D; input.view(b,c,h*w)</span><br><span class="line">G &#x3D; torch.bmm(F,F.transpose(1,2))</span><br><span class="line">G.div_(h*w)</span><br></pre></td></tr></table></figure>
 <p>&emsp;&emsp;快速风格迁移效果如下图所示：<br><img src="/images/faststyle2.jpg" alt="faststyle1">  </p>
