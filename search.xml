@@ -1,30 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>快速风格迁移网络学习</title>
-    <url>/2020/04/28/faststyle/</url>
-    <content><![CDATA[<p>&emsp;&emsp;快速风格迁移网络由<a href="https://cs.stanford.edu/people/jcjohns/papers/eccv16/JohnsonECCV16.pdf" target="_blank" rel="noopener">《Perceptual Losses for Real-Time Style Transfer and Super-Resolution》</a>提出，其由生成网络和损失网络组成，如下图所示。<br><img src="/images/faststyle1.jpg" alt="faststyle1"></p>
-<center>快速风格迁移网络</center>  
-
-<p>&emsp;&emsp;原图片经过生成网络得到生成的风格图片后分别与目标图片和原图片计算两种损失。其中constant损失使生成图片与原图片整体相似，而风格损失则使生成的图片的风格向目标图片偏移。两种损失均为l2损失。图片的风格由Gram矩阵得到，Gram矩阵的计算公式为</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Gram&#x3D;A^T·A</span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;具体代码为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">b,c,h,w &#x3D; input.size()</span><br><span class="line">F &#x3D; input.view(b,c,h*w)</span><br><span class="line">G &#x3D; torch.bmm(F,F.transpose(1,2))</span><br><span class="line">G.div_(h*w)</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;快速风格迁移效果如下图所示：<br><img src="/images/faststyle2.jpg" alt="faststyle1">  </p>
-<center>实验效果</center>  
-
-<p>&emsp;&emsp;代码地址为<a href="https://github.com/talebolano/My-Pytorch-Learn--fast-style-Transfer" target="_blank" rel="noopener">My Pytorch-Learn fast style Transfer</a>。  </p>
-]]></content>
-  </entry>
-  <entry>
     <title>九里</title>
     <url>/2020/04/28/my-poem-2/</url>
     <content><![CDATA[<h1 id="九里（2017-2020）"><a href="#九里（2017-2020）" class="headerlink" title="九里（2017-2020）"></a>九里（2017-2020）</h1><h3 id="建构"><a href="#建构" class="headerlink" title="建构"></a>建构</h3><p>失败了……却还在继续<br>叹息浮在房间<br>光线里，它们沉积着<br>饮水机反复发热、<br>人们起身坐下的频率  </p>
 <p>她的脑中落满耳鸣<br>液态的下午缓缓降下<br>犹如水滴、细语的化石<br>落日时刻碎裂成图画<br>这易朽的一帧，赐予延时的平静  </p>
 <p align="right">2017-9<p>  
+<a id="more"></a>   
+### 冷暴力
 
-<h3 id="冷暴力"><a href="#冷暴力" class="headerlink" title="冷暴力"></a>冷暴力</h3><p>下潜的钟摆，公寓斜入傍晚<br>晚宴搅动胶稠的肢体。 </p>
+<p>下潜的钟摆，公寓斜入傍晚<br>晚宴搅动胶稠的肢体。 </p>
 <p>消失已久的人，聚敛于雾和谜语<br>沉默于嬉戏。单向的话语<br>触抵锁骨，述说又述说<br>无力复制着暴力的甜度。  </p>
 <p>退潮时刻，她睁开眼慢慢<br>抚慰波浪。一颗海水之柚<br>笑容在海岸线上消散  </p>
 <p>颠倒的回忆在偷窥，永远置身别处<br>此刻转身又返回舞池的她<br>她的星星，她，而她……  </p>
@@ -74,22 +59,23 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/02/12/hello-world/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Hello world! github pages.</span><br></pre></td></tr></table></figure>
+    <title>快速风格迁移网络学习</title>
+    <url>/2020/04/28/faststyle/</url>
+    <content><![CDATA[<p>&emsp;&emsp;快速风格迁移网络由<a href="https://cs.stanford.edu/people/jcjohns/papers/eccv16/JohnsonECCV16.pdf" target="_blank" rel="noopener">《Perceptual Losses for Real-Time Style Transfer and Super-Resolution》</a>提出，其由生成网络和损失网络组成，如下图所示。  </p>
+<a id="more"></a>  
+<p><img src="/images/faststyle1.jpg" alt="faststyle1"></p>
+<center>快速风格迁移网络</center>  
 
-<p>测试图片</p>
-<p><img src="https://raw.githubusercontent.com/talebolano/TensorRT-Yolov3/master/image/example.png" alt="图片alt"></p>
-<p>测试流程图</p>
-<div id="flowchart-0" class="flow-chart"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">st=>start: Start
-op=>operation: Your Operation
-cond=>condition: Yes or No?
-e=>end
+<p>&emsp;&emsp;原图片经过生成网络得到生成的风格图片后分别与目标图片和原图片计算两种损失。其中constant损失使生成图片与原图片整体相似，而风格损失则使生成的图片的风格向目标图片偏移。两种损失均为l2损失。图片的风格由Gram矩阵得到，Gram矩阵的计算公式为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Gram&#x3D;A^T·A</span><br></pre></td></tr></table></figure>
 
-st->op->cond
-cond(yes)->e
-cond(no)->op</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script>]]></content>
+<p>&emsp;&emsp;具体代码为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">b,c,h,w &#x3D; input.size()</span><br><span class="line">F &#x3D; input.view(b,c,h*w)</span><br><span class="line">G &#x3D; torch.bmm(F,F.transpose(1,2))</span><br><span class="line">G.div_(h*w)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;快速风格迁移效果如下图所示：<br><img src="/images/faststyle2.jpg" alt="faststyle1">  </p>
+<center>实验效果</center>  
+
+<p>&emsp;&emsp;代码地址为<a href="https://github.com/talebolano/My-Pytorch-Learn--fast-style-Transfer" target="_blank" rel="noopener">My Pytorch-Learn fast style Transfer</a>。  </p>
+]]></content>
   </entry>
   <entry>
     <title>诗、桥与湖</title>
@@ -102,8 +88,10 @@ cond(no)->op</textarea><textarea id="flowchart-0-options" style="display: none">
 <p>之后，我们是不孤独的牧童<br>曾很轻易的向下<br>如此进入一条鱼的身体。<br>从一个名字到另一个<br>潮湿中溶化的<br>垃圾桶。鱼骨头，猫<br>正在叼去。  </p>
 <p>迄今为止，我们仍会因为<br>一些小事改变。<br>比如说空气的质量和排座次序<br>而我，也会依然赦免你的呕吐——<br>你从没成为过鸽子，<br>你再没变成过甲虫。</p>
 <p align="right">2014-3<p>  
+<a id="more"></a>    
+### 水底
 
-<h3 id="水底"><a href="#水底" class="headerlink" title="水底"></a>水底</h3><p>你想把窗帘拉上，<br>还没有到起风的时间。<br>太阳  是不能<br>被玄学和玻璃遮蔽。  </p>
+<p>你想把窗帘拉上，<br>还没有到起风的时间。<br>太阳  是不能<br>被玄学和玻璃遮蔽。  </p>
 <p>风扇在转，蛙声<br>快要晒成蝉鸣了。<br>还是没有风的声音。<br>影子依旧短小，像华尔兹<br>黑白里的卓别林。  </p>
 <p>闹钟响着，已经下午一点一刻了，<br>她正起床，要去上学<br>和打扫卫生区。  </p>
 <p>秋天的校服旧了许多，<br>正从青白变为紫色<br>黑色的墨点有些生硬。  </p>
@@ -304,6 +292,24 @@ cond(no)->op</textarea><textarea id="flowchart-0-options" style="display: none">
 
 
 ]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/02/12/hello-world/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Hello world! github pages.</span><br></pre></td></tr></table></figure>
+
+<p>测试图片</p>
+<p><img src="https://raw.githubusercontent.com/talebolano/TensorRT-Yolov3/master/image/example.png" alt="图片alt"></p>
+<p>测试流程图</p>
+<div id="flowchart-0" class="flow-chart"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">st=>start: Start
+op=>operation: Your Operation
+cond=>condition: Yes or No?
+e=>end
+
+st->op->cond
+cond(yes)->e
+cond(no)->op</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script>]]></content>
   </entry>
   <entry>
     <title>写于2014年的尾巴</title>
