@@ -94,8 +94,9 @@
 <meta property="og:description" content="solo系列网络是由Xinlong Wang提出的单阶段实例分割网络。其搭建在mmdetection库中。solov2主干网络如下图所示：">
 <meta property="og:image" content="http://yoursite.com/images/solobackbone.jpg">
 <meta property="og:image" content="http://yoursite.com/images/gn.jpg">
+<meta property="og:image" content="http://yoursite.com/images/upsample.jpg">
 <meta property="article:published_time" content="2020-09-02T06:23:05.318Z">
-<meta property="article:modified_time" content="2020-09-08T12:10:50.281Z">
+<meta property="article:modified_time" content="2020-09-08T12:13:59.514Z">
 <meta property="article:author" content="yww">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/images/solobackbone.jpg">
@@ -352,7 +353,8 @@
 <p>1、修改solo中tensorrt或onnx不支持的层。solo原生代码中采用的group normalization层在onnx和tensorrt中支持性不高，会导致模型转换错误，因此将模型中所有group normalization层替换为batch normalization层。因为具体替换了模型的结构，因此还需对模型进行重新训练。</p>
 <p><img src="/images/gn.jpg" alt="faststyle1"></p>
 <center>onnx生成的gn层</center>
-![faststyle1](/images/upsample.jpg)
+
+<p><img src="/images/upsample.jpg" alt="faststyle1"></p>
 <center>未指定缩放size情况下onnx生成的upsample层</center>
 
 <p>2、进行pth模型到onnx模型的转换。pytorch1.3对应的onnx版本为1.6，其upsample层需具体转换尺寸，不然会在转tensorrt的过程中报错。此外，solo采用了较为特殊的coordconv，onnx不支持其采用的torch.linesapce操作，因此我们将coord中指明方向的两层保存为具体参数直接读取使用。转换onnx的具体代码如下所示：</p>
