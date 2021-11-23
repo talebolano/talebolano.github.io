@@ -353,14 +353,15 @@ cond(no)->op</textarea><textarea id="flowchart-0-options" style="display: none">
     <title>transformer在视觉检测的应用</title>
     <url>/2021/11/23/transformer/</url>
     <content><![CDATA[<p>近年，Transformers在计算机视觉领域大放异彩。将transformer带入目标检测/实例分割的工作如过江之鲫，不胜枚举。而2020年Detection Transformers（detr）更是带来一种新的目标检测范式，启发了后续众多的工作。</p>
-<h1 id="detr简介"><a href="#detr简介" class="headerlink" title="detr简介"></a>detr简介</h1><p><img src="/transformer/detr.jpg" alt="detr"></p>
+<a id="more"></a>  
+<h1 id="detr简介"><a href="#detr简介" class="headerlink" title="detr简介"></a>detr简介</h1><p><img src="./transformer/detr.jpg" alt="detr"></p>
 <center>detr结构</center>
 
 <p>detr的结构如上图所示，图片经过cnn主干网络后得到特征图，加入位置信息后送入transfomer encoder，和一队可训练的object queries在transfomer decoder中进行cross attention，输出的结果经过FFN后直接得到回归框和类别分数，不需要nms等后处理，做到真正的端到端。<br>和传统的目标检测算法相比，detr摒弃了基于特征图的目标框回归方法，直接把目标检测视为set prediction问题。</p>
-<p><img src="/transformer/tranditionalobject.jpg" alt="object"></p>
+<p><img src="./transformer/tranditionalobject.jpg" alt="object"></p>
 <center>基于特征图的目标框回归：以上分别对应yolo、rcnn、centernet、cornernet的思想</center>
 
-<p><img src="/transformer/matching.jpg" alt="object"></p>
+<p><img src="./transformer/matching.jpg" alt="object"></p>
 <center>detr的每个输出结果和ground truth进行二分匹配</center>
 
 <p>在训练过程中，detr的每个输出结果和ground truth进行分类损失和回归损失的匈牙利匹配，从而将每个object query和ground truth关联起来，匹配上的结果视为正样本，而未匹配上的结果视为负样本。这样，避免了传统的目标检测算法中多个预测值对应于一个ground truth的问题，从而实现对nms的去除。论文中，detr的object queries设为100或300个就可以取得很好的预测效果，远远少于yolo、centernet等单阶段检测网络动不动上万个输出结果，也要少于faster rcnn等二阶段目标检测算法上千个输出结果。由于避免了特征图和ground truth的直接关系，detr也很容易可以拓展到全景分割任务中，实现thing和stuff的统一输出。<br>因此，我们不难看出detr在工业应用中的主要优势：1、在复杂拥挤场景下，detr可以避免由于目标特征太近所产生的低质量目标框。虽然faster rcnn等二阶段算法理论上也可以避免这种低质量目标框，但detr作为一种单阶段算法也可以实现同样的效果，确实是一种突破。2、可以直接用来做全景分割。<br>当然，detr也存在着一些劣势，例如训练太慢（150~300epoch）、小目标检测效果差等，很多后续的论文都针对这两点展开，做了很多很有意义的工作。</p>
