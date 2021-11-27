@@ -106,7 +106,7 @@
 <meta property="og:image" content="http://yoursite.com/2021/11/23/transformer/knet.jpg">
 <meta property="og:image" content="http://yoursite.com/2021/11/23/transformer/kernel.jpg">
 <meta property="article:published_time" content="2021-11-23T12:25:41.614Z">
-<meta property="article:modified_time" content="2021-11-27T17:17:17.914Z">
+<meta property="article:modified_time" content="2021-11-27T17:23:55.900Z">
 <meta property="article:author" content="yww">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2021/11/23/transformer/detr.jpg">
@@ -361,7 +361,7 @@
 
 <p>detr的结构如上图所示，图片经过cnn主干网络后得到特征图，加入位置信息后送入transfomer encoder，和一队可训练的object queries在transfomer decoder中进行交叉注意力计算，输出的结果经过FFN后直接得到回归框和类别分数，不需要nms等后处理，做到真正的端到端。<br><img src="transformer.jpg" alt="object"></p>
 <center>detr中使用的transformer结构</center>
-detr中使用的transformer结构如上图所示，可以看到其由encoder和decoder两大部分组成，其中encoder主要由self attention和ffn重复N次组成，decoder由self attention、ffn、cross attention、ffn重复M次组成（论文中N和M均为6），图中的“add&norm”分别代表残差结构和layernorm层。transformer解耦了cnn中的Spatial层面的计算和channel层面的计算（分别对应于attention和ffn），有观点认为这种架构是transformer成功的根本原因而非其中的attention模块。（这可能也是谷歌那篇mlp mixer work的原因）
+detr中使用的transformer结构如上图所示，可以看到其由encoder和decoder两大部分组成，其中encoder主要由self attention和ffn重复N次组成，decoder由self attention、cross attention、ffn重复M次组成（论文中N和M均为6），图中的“add&norm”分别代表残差结构和layernorm层。transformer解耦了cnn中的Spatial层面的计算和channel层面的计算（分别对应于attention和ffn），有观点认为这种架构是transformer成功的根本原因而非其中的attention模块。（这可能也是谷歌那篇mlp mixer work的原因）
 
 <p>和传统的目标检测算法相比，detr摒弃了基于特征图的目标框回归方法，直接把目标检测视为set prediction问题，实现了对模型预测结果和图片中位置的严格绑定关系的解耦。</p>
 <p><img src="tranditionalobject.jpg" alt="object"></p>
